@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1> Get vs Post differences </h1>
+    <form action="ServletDemo" method="get">
+        <label>Enter your name: <input type="text" name="name"></label>
+        <input type="submit" value="Submit with GET">
+    </form>
+    <form action="ServletDemo" method="post">
+        <label>Enter your name: <input type="text" name="name"></label>
+        <input type="submit" value="Submit with POST">
+    </form>
+</body>
+</html>
+
+
+
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/ServletDemo")
+public class ServletDemo extends HttpServlet {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String name = request.getParameter("name");
+        response.getWriter().println("GET Method: Hello, " + name);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String name = request.getParameter("name");
+        response.getWriter().println("POST Method: Hello, " + name);
+    }
+}
